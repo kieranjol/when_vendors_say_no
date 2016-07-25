@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>When Vendors say NO!</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+				    <h1>When Vendors Say No!</h1>
+					<h3>Implementing FFV1</h3>
+					<h3>IFI Irish Film Archive</h3>
+				    <p>
+						<small><a href="http://github.com/kieranjol">Kieran O'Leary - IFI Irish Film Archive</a> / <a href="http://twitter.com/kieranjol">@kieranjol</a></small>
+					</p>
+				
+				</section>
+				<section>
+					<h2>About the Irish Film Institute</h2>
+					<ul>
+						<li>Not just an archive</li>
+						<li>3 commercial cinemas</li>
+						<li>Cinema Education Department</li>
+						<li>Restaurant/Bar/Cafe/Bookshop</li>
+						<li>Irish Film Programming Department</li>
+						<li>IFI International - Sending Irish film prints & DCPs around the world</li>
+					</ul>
+				</section>
+				<section>
+				<h2>The IFI Irish Film Archive</h2>
+					<ul>
+						<li>Library</li>
+						<li>Paper and Artefact collection</li>
+						<li><span class="fragment highlight-red">Amateur and Professional Film Collections</span></li>
+						
+						<li><span class="fragment highlight-red">Variety of Analog and Digital Tape Formats</span></li>
+						<li><span class="fragment highlight-red">Born Digital Broadcast and Cinema Deliveries</span></li>
+						
+						<li>25% of funding from Irish Government/Arts Council</li>
+						<li>>Everything else generated from commercial activites</li>
+						<li>In 2014, 7 full time Moving Image Archivists (now we are 11)</li>
+					</ul>
+				</section>
+				<section data-background="columb.gif"><h2>Columb Gilna</h2> </section>
+				<section data-background="IL3i7eN.gif"><h2>Anja Mahler</h2></section>
+
+				<section><img src="columb.gif"><ul>Metadata & Workflow Research</ul><img src="IL3i7eN.gif"></section>
+				<section><img src="jisc.png"></section>
+				
+				<section>
+					<h2>Why FFV1?</h2>
+					<ul>
+						<li>Lossless, reversible compression</li>
+						<li>Cost/storage savings</li>
+						<li>Open Format</li>
+						<li>Strong, supportive community</li>
+						<li>Fast encoding</li>
+						<li><u><i>Potential</i></u> for one format for tape and film scans</li>
+					</ul>
+				</section>
+				<section><img src="arc1.jpg" width="60%"></section>
+				<section>
+					<h2>Unnamed Proprietary Vendor Software</h2>
+					<p>Watch (drop) networked folders</p>
+						<p class="fragment">Generated watermarked access copies</p>
+						<p><span class="fragment">Generated (heavily transformed) mediainfo xml</span></p> 
+						<p><span class="fragment">Added md5 checksum to mediainfo xml</span></p>
+						<p><span class="fragment">Moved file to another watch folder and written to LTO</span></p>
+					
+				</section>
+				<section>
+					<h2>Vendor engagement</h2>
+					<p>Q. Can you add support for FFV1 & MKV?</p>
+						<p class="fragment">A. no</p>
+						<p><span class="fragment">Q. Ok! Is there any chance of you adding it soon?</span></p> 
+						<p><span class="fragment">A. Not for the forseeable future</span></p>
+						<p><span class="fragment">...</span></p>
+						<p><span class="fragment">¯\_(ツ)_/¯</span></p>
+					
+				</section>
+				<section>
+					<h2>FFV1 off the agenda</h2>
+					<p class="fragment">We needed an automated method of FFV1 creation</p>
+						<p class="fragment">No Command line proficiency</p>
+						<p><span class="fragment">No software design/scripting skills</span></p> 
+						<p><span class="fragment">Other formats pursued</span></p>
+						<p><span class="fragment">JPEG2000/HUFFYUV</span></p>
+					
+				</section>
+				<section>
+				    <section>
+					<h2>Progress</h2>
+					<ul>
+						<li>Vendor software had command line node</li>
+						<li>FFV1 now supported through our simple workaround</li>
+					</ul>
+					
+					<a href="#" class="navigate-down"></a>
+				    </section>
+				    <section>
+				        If it was that simple for us, why didn't they try to support it?
+				    </section>
+				</section>    
+				<section>
+					<h2>Framemd5 - Lossless verification</h2>
+					<ul>
+						<li>FFmpeg tool</li>
+						<li>Generates textfile with md5 values for every decoded frame</li>
+						<li>Verify Losslessness</li>
+						<li>Shows which frames have checksum mismatch</li>
+						<li>How to automate?</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Bash and Python scripting</h2>
+					<ul>
+						<li>Automated command line use</li>
+						<li>Studied Dave Rice's mediamicroservices scripts</li>
+						<li>Quickly generated an FFV1/framemd5 script</li>
+						<li>Quickly replicated all the features of vendor software</li>
+						<li>Unnamed vendor software irrelevant</li>
+						<li>Embrace of open source formats and software</li>
+					</ul>
+				
+				</section>
+				<section><img src="arc2.jpg" width="50%"></section>	
+
+				<section>
+					<h2>You don't HAVE to code...</h2>
+					<p class="fragment">...but it helps</p>
+						
+						<p><span class="fragment">Lots of FFV1/ access/preservation scripts available</span></p> 
+						<p><span class="fragment">You don't have to reinvent the wheel</span></p>
+						<p><span class="fragment">Negotiate with your vendor</span></p>
+					 	<p><span class="fragment">If your vendors say no...</span></p>
+						<p><span class="fragment">You have options :)</span></p>
+					
+				</section>
+				<section><img src="arc2.jpg" width="50%"></section>	
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
